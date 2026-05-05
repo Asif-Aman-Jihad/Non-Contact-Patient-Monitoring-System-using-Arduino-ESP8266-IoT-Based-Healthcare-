@@ -181,7 +181,7 @@ patient monitors that cost hundreds of thousands of taka.
 
 ## 👨‍💻 Author
 
-**[Asif Aman Jihad]**  
+**Asif Aman Jihad**  
 Department of Computer Science  
 American International University-Bangladesh
 
