@@ -121,15 +121,14 @@ sends all 3 to Blynk
 - Copy your Template ID and Auth Token
 
 ### 4. Upload Arduino Uno Code
-- Open `arduino_uno/vitals_arduino.ino`
+- Open `arduino_code/vitals_arduino.ino`
 - Select Board: Arduino Uno
 - Select correct COM port
-- **Disconnect D10 and D11 wires before uploading**
+- **Disconnect D11 wire (Arduino TX to ESP8266 RX) before uploading.** D10 is not used in this sketch. Reconnect D11 after upload.
 - Upload
-- Reconnect D10 and D11 after upload
 
 ### 5. Upload ESP8266 Code
-- Open `esp8266/vitals_esp8266.ino`
+- Open `esp_code/vitals_esp8266.ino`
 - Fill in your WiFi credentials and Blynk tokens
 - Select Board: NodeMCU 1.0 (ESP-12E Module)
 - Select correct COM port
@@ -140,10 +139,10 @@ sends all 3 to Blynk
 ## 📁 Repository Structure
 non-contact-patient-vitals-monitor/
 │
-├── arduino_uno/
+├── arduino_code/
 │   └── vitals_arduino.ino       # MAX30100 + LCD code
 │
-├── esp8266/
+├── esp_code/
 │   └── vitals_esp8266.ino       # MLX90614 + WiFi + Blynk code
 │
 ├── docs/
@@ -154,11 +153,10 @@ non-contact-patient-vitals-monitor/
 ## ⚠️ Important Notes
 
 - Never connect 5V to ESP8266 GPIO pins — 3.3V logic only
-- Always disconnect D10 and D11 wires before uploading to Arduino
+- Always disconnect D11 (Arduino TX to ESP8266 RX) wires before uploading to Arduino Uno (D10 is unused by this sketch). Reconnect after upload.
 - MAX30100 must be powered from 3.3V not 5V
 - MLX90614 VCC connects to 5V but SDA/SCL operate at 3.3V level on ESP8266
-- Use Serial.swap() on ESP8266 to receive Arduino data on D7 (GPIO13)
-  without interfering with USB Serial Monitor
+- Use Serial.swap() on ESP8266 to receive Arduino data on D7 (GPIO13) without interfering with USB Serial Monitor. Note: Serial.swap() remaps UART0; ensure correct wiring and be cautious during flashing/debugging.
 - Place finger flat and still on MAX30100 — wait 15 seconds for stable reading
 - Point MLX90614 at forehead from 3–5 cm distance
 
